@@ -196,7 +196,7 @@ namespace DiscoBot.Modules
             {
                 if (number < 100)
                 {
-                    var messages = await Context.Channel.GetMessagesAsync(a).Flatten();
+                    var messages = await Context.Channel.GetMessagesAsync(number).Flatten();
                     await Context.Channel.DeleteMessagesAsync(messages);
                 }
                 else
