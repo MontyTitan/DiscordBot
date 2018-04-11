@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
-using DiscoBot.Core.UserAccounts;
 using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
