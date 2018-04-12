@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace DiscoBot
 {
@@ -13,9 +15,22 @@ namespace DiscoBot
     {
         DiscordSocketClient _client;
         CommandHandler _handler;
+        public static Dictionary<string, string> globals = new Dictionary<string, string>();
+        public static string roleName;
+        public static string channelTag;
+
+        //static void Main(string[] args)
+        //=> new Program().StartAsync().GetAwaiter().GetResult();
 
         static void Main(string[] args)
-        => new Program().StartAsync().GetAwaiter().GetResult();
+        {
+            if (!File.Exists("settingsAdmin.json")) Environment.Exit(0);
+            string json = File.ReadAllText("DataStorage.json");
+            globals = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
+            roleName = globals["roleName"];
+            channelTag = globals["channelTag"];
+            new Program().StartAsync().GetAwaiter().GetResult();
+        }
 
         public async Task StartAsync()
         {

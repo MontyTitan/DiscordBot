@@ -30,7 +30,7 @@ namespace DiscoBot.Modules
             adminChannel = CheckChannel(channelID);
 
             var admin = Context.User as SocketGuildUser;
-            var role = (admin as IGuildUser).Guild.Roles.FirstOrDefault(x => x.Name == "SecretOwner");
+            var role = (admin as IGuildUser).Guild.Roles.FirstOrDefault(x => x.Name == Program.roleName);
 
             if (adminChannel && admin.Roles.Contains(role))
             {
@@ -58,7 +58,7 @@ namespace DiscoBot.Modules
             adminChannel = CheckChannel(channelID);
 
             var admin = Context.User as SocketGuildUser;
-            var role = (admin as IGuildUser).Guild.Roles.FirstOrDefault(x => x.Name == "SecretOwner");
+            var role = (admin as IGuildUser).Guild.Roles.FirstOrDefault(x => x.Name == Program.roleName);
 
             if (adminChannel && admin.Roles.Contains(role))
             {
@@ -100,7 +100,7 @@ namespace DiscoBot.Modules
             adminChannel = CheckChannel(channelID);
 
             var admin = Context.User as SocketGuildUser;
-            var role = (admin as IGuildUser).Guild.Roles.FirstOrDefault(x => x.Name == "SecretOwner");
+            var role = (admin as IGuildUser).Guild.Roles.FirstOrDefault(x => x.Name == Program.roleName);
 
             if (adminChannel && admin.Roles.Contains(role))
             {
@@ -148,7 +148,7 @@ namespace DiscoBot.Modules
             adminChannel = CheckChannel(channelID);
 
             var admin = Context.User as SocketGuildUser;
-            var role = (admin as IGuildUser).Guild.Roles.FirstOrDefault(x => x.Name == "SecretOwner");
+            var role = (admin as IGuildUser).Guild.Roles.FirstOrDefault(x => x.Name == Program.roleName);
 
             if (adminChannel && admin.Roles.Contains(role))
             {
@@ -217,7 +217,7 @@ namespace DiscoBot.Modules
             adminChannel = CheckChannel(channelID);
 
             var admin = Context.User as SocketGuildUser;
-            var role = (admin as IGuildUser).Guild.Roles.FirstOrDefault(x => x.Name == "SecretOwner");
+            var role = (admin as IGuildUser).Guild.Roles.FirstOrDefault(x => x.Name == Program.roleName);
 
             if (adminChannel && admin.Roles.Contains(role))
             {
@@ -294,7 +294,7 @@ namespace DiscoBot.Modules
         private static bool CheckChannel(string channelID)
         {
 
-            if (channelID == "431996791739645954")
+            if (channelID == Program.channelTag)
             {
                 return adminChannel = true;
             }
