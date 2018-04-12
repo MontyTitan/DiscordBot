@@ -36,7 +36,6 @@ namespace DiscoBot.Modules
             {
                 user = Context.Message.MentionedUsers.FirstOrDefault();
                 Utilities.ValidateList(user.Id.ToString(), quote);
-                //DataStorage.AddPairToStorage(user.Username, quote);
                 if (Utilities.set)
                     await Context.Channel.SendMessageAsync($"Message for {user.Username} added.");
                 else
@@ -123,7 +122,6 @@ namespace DiscoBot.Modules
                     foreach (string entry in quotes)
                     {
                         x++;
-                        //embed.WithDescription(x + ": " + entry);
                         embed.AddField("Quote" + x, entry);
                     }
                     await Context.Channel.SendMessageAsync("", false, embed.Build());
