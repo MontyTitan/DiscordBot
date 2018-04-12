@@ -50,6 +50,7 @@ namespace DiscoBot
 
             if (!DataStorage.pairs.TryGetValue(key, out existing))
             {
+                //add a quote check
                 existing = new List<string>();
                 DataStorage.pairs[key] = existing;
             }
