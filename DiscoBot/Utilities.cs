@@ -15,6 +15,7 @@ namespace DiscoBot
         static int numberOfMessages = 10;
         static Random rnd = new Random();
         public static bool set;
+        public static bool exists;
 
         static Utilities()
         {
@@ -47,18 +48,28 @@ namespace DiscoBot
         {
             List<string> existing;
             set = false;
+            exists = false;
 
             if (!DataStorage.pairs.TryGetValue(key, out existing))
             {
-                //add a quote check
                 existing = new List<string>();
                 DataStorage.pairs[key] = existing;
             }
             if (existing.Count < numberOfMessages)
             {
-                set = true;
-                existing.Add(quote);
-                DataStorage.SaveData();
+                foreach (string value in existing)
+                {
+                    if (quote.ToUpper() == value.ToUpper())
+                    {
+                        exists = true;
+                    }
+                }
+                if (!exists)
+                {
+                    set = true;
+                    existing.Add(quote);
+                    DataStorage.SaveData();
+                }
             }
         }
 
