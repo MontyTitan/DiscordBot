@@ -18,6 +18,7 @@ namespace DiscoBot
         public static Dictionary<string, string> globals = new Dictionary<string, string>();
         public static string roleName;
         public static string channelTag;
+        public static string numberOfMessages;
 
         //static void Main(string[] args)
         //=> new Program().StartAsync().GetAwaiter().GetResult();
@@ -25,10 +26,11 @@ namespace DiscoBot
         static void Main(string[] args)
         {
             if (!File.Exists("settingsAdmin.json")) Environment.Exit(0);
-            string json = File.ReadAllText("DataStorage.json");
+            string json = File.ReadAllText("settingsAdmin.json");
             globals = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
             roleName = globals["roleName"];
             channelTag = globals["channelTag"];
+            numberOfMessages = globals["numberOfMessages"];
             new Program().StartAsync().GetAwaiter().GetResult();
         }
 

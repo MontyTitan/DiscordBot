@@ -12,7 +12,6 @@ namespace DiscoBot
     {
         private static Dictionary<string, string> alerts;
 
-        static int numberOfMessages = 10;
         static Random rnd = new Random();
         public static bool set;
         public static bool exists;
@@ -55,7 +54,7 @@ namespace DiscoBot
                 existing = new List<string>();
                 DataStorage.pairs[key] = existing;
             }
-            if (existing.Count < numberOfMessages)
+            if (existing.Count <  Int32.Parse(Program.numberOfMessages))
             {
                 foreach (string value in existing)
                 {
