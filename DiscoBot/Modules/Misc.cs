@@ -80,7 +80,7 @@ namespace DiscoBot.Modules
                 }
                 else
                 {
-                    await Context.Channel.SendMessageAsync("No idea what happened");
+                    //await Context.Channel.SendMessageAsync("No idea what happened");
                 }
             }
             else
@@ -128,7 +128,7 @@ namespace DiscoBot.Modules
                 }
                 else
                 {
-                    await Context.Channel.SendMessageAsync("No idea what happened");
+                    //await Context.Channel.SendMessageAsync("No idea what happened");
                 }
             }
             else
@@ -164,13 +164,13 @@ namespace DiscoBot.Modules
                 }
                 else if (Utilities.set)
                 {
-                    var messages = await Context.Channel.GetMessagesAsync(2).Flatten();
-                    await Context.Channel.DeleteMessagesAsync(messages);
+                    //var messages = await Context.Channel.GetMessagesAsync(2).Flatten();
+                    //await Context.Channel.DeleteMessagesAsync(messages);
                     await Context.Channel.SendMessageAsync($"Message {a} has been deleted for {user.Username}.");
                 }
                 else
                 {
-                    await Context.Channel.SendMessageAsync("No idea what happened");
+                    //await Context.Channel.SendMessageAsync("No idea what happened");
                 }
             }
             else
@@ -181,7 +181,49 @@ namespace DiscoBot.Modules
             }
         }
 
-        [Command("purge")]
+        [Command("du")]
+        [Summary("Delete specific user from the list.")]
+        [RequireUserPermission(GuildPermission.Administrator)]
+        public async Task DeleteUser(SocketUser user)
+        {
+            string channelID = Context.Channel.Id.ToString();
+            adminChannel = CheckChannel(channelID);
+
+            var admin = Context.User as SocketGuildUser;
+            var role = (admin as IGuildUser).Guild.Roles.FirstOrDefault(x => x.Name == Program.roleName);
+
+            if (adminChannel && admin.Roles.Contains(role))
+            {
+                user = Context.Message.MentionedUsers.FirstOrDefault();
+                Utilities.DeleteUser(user.Id.ToString());
+                var embed = new EmbedBuilder();
+
+                if (!Utilities.set)
+                {
+                    embed.WithDescription($"{user.Username} does not exist in the list.");
+                    embed.WithColor(new Color(255, 255, 0));
+                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                }
+                else if (Utilities.set)
+                {
+                    //var messages = await Context.Channel.GetMessagesAsync(2).Flatten();
+                    //await Context.Channel.DeleteMessagesAsync(messages);
+                    await Context.Channel.SendMessageAsync($"All messages for {user.Username} has been deleted.");
+                }
+                else
+                {
+                    //await Context.Channel.SendMessageAsync("No idea what happened");
+                }
+            }
+            else
+            {
+                await Context.Message.DeleteAsync();
+                var dmChannel = await Context.User.GetOrCreateDMChannelAsync();
+                await dmChannel.SendMessageAsync("Please use the admin channel. Thank you.");
+            }
+        }
+
+        /*[Command("purge")]
         [Summary("Delete number of messages.")]
         [RequireUserPermission(GuildPermission.Administrator)]
         public async Task PurgeMessages(int number)
@@ -207,7 +249,7 @@ namespace DiscoBot.Modules
                 var dmChannel = await Context.User.GetOrCreateDMChannelAsync();
                 await dmChannel.SendMessageAsync("Please use the admin channel. Thank you.");
             }
-        }
+        }*/
 
         [Command("help")]
         [Summary ("")]

@@ -26,7 +26,7 @@ namespace DiscoBot
         static void Main(string[] args)
         {
             if (!File.Exists("settingsAdmin.json")) Environment.Exit(0);
-            string json = File.ReadAllText("settingsAdmin.json");
+            var json = File.ReadAllText("settingsAdmin.json");
             globals = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
             roleName = globals["roleName"];
             channelTag = globals["channelTag"];

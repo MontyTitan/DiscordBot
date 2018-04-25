@@ -127,5 +127,23 @@ namespace DiscoBot
                 set = false;
             }
         }
+
+        public static void DeleteUser(string key)
+        {
+            set = false;
+            List<string> existing;
+
+            if (DataStorage.pairs.ContainsKey(key))
+            {
+                set = true;
+                existing = DataStorage.pairs[key];
+                existing.Remove(key);
+                DataStorage.SaveData();
+            }
+            else
+            {
+                set = false;
+            }
+        }
     }
 }
